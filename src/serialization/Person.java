@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class Person implements Serializable {
 	private static final long serialVersionUID = 1L;
-	static String country = "ITALY";
+	static String country = "ITALY"; //Not serialized
 	private int age;
 	private String name;
-	transient int height;
+	transient int height; //Not serialized
 
 	public static String getCountry() {
 		return country;
