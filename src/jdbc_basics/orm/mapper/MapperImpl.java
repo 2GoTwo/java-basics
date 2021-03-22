@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
-import java.util.Map;
 
 import jdbc_basics.domain.Animal;
 
@@ -32,29 +31,21 @@ public class MapperImpl<T> {
 	public static <T> T map(Object[] params, Class<?> clazz) {
 		T instance = null;
 		try {
-			Class<?> classToMap = Class.forName(clazz.getName());
-
-			try {
-				instance = (T) classToMap.getDeclaredConstructor().newInstance();
-				int i = 0;
-				for (Field field : clazz.getDeclaredFields()) {
-					invokeSetter(field, params[i], instance);
-					i++;
-				}
-			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-				e.printStackTrace();
+			instance = (T) clazz.getDeclaredConstructor().newInstance();
+			int i = 0;
+			for (Field field : clazz.getDeclaredFields()) {
+				invokeSetter(field, params[i], instance);
+				i++;
 			}
-		} catch (ClassNotFoundException e) {
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		}
 		return instance;
 	}
 
 	public static void main(String[] args) {
-		Object[] params = {
-				new Long(0L), null, new String("wassif"), LocalDate.now()
-		};
+		Object[] params = { new Long(1L), null, new String("wassif"), LocalDate.now() };
 		Object obj = map(params, Animal.class);
 		System.out.println(obj);
 	}
