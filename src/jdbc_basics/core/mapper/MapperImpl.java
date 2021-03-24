@@ -3,9 +3,6 @@ package jdbc_basics.core.mapper;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.time.LocalDate;
-
-import jdbc_basics.domain.Animal;
 
 public class MapperImpl<T> {
 
