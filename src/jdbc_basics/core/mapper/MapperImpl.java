@@ -1,4 +1,4 @@
-package jdbc_basics.orm.mapper;
+package jdbc_basics.core.mapper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -43,11 +43,4 @@ public class MapperImpl<T> {
 		}
 		return (T) instance;
 	}
-
-	public static void main(String[] args) {
-		Object[] params = { Long.valueOf(1), null, new String("wassif"), LocalDate.now() };
-		Object obj = map(params, Animal.class);
-		System.out.println(obj);
-	}
-
 }
